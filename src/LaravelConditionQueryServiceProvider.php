@@ -2,9 +2,9 @@
 
 namespace MichaelNabil230\LaravelConditionQuery;
 
+use MichaelNabil230\LaravelConditionQuery\Commands\LaravelConditionQueryCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use MichaelNabil230\LaravelConditionQuery\Commands\LaravelConditionQueryCommand;
 
 class LaravelConditionQueryServiceProvider extends PackageServiceProvider
 {
