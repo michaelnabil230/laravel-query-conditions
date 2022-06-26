@@ -2,13 +2,12 @@
 
 namespace MichaelNabil230\LaravelQueryConditions\Tests;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use MichaelNabil230\LaravelQueryConditions\Tests\TestCase;
-use MichaelNabil230\LaravelQueryConditions\Support\Condition;
-use MichaelNabil230\LaravelQueryConditions\LaravelQueryConditions;
+use Illuminate\Database\Eloquent\Model;
 use MichaelNabil230\LaravelQueryConditions\Concerns\HasQueryCondonation;
 use MichaelNabil230\LaravelQueryConditions\Interfaces\QueryCondonation as InterfacesQueryCondonation;
+use MichaelNabil230\LaravelQueryConditions\LaravelQueryConditions;
+use MichaelNabil230\LaravelQueryConditions\Support\Condition;
 
 class QueryConditionsTest extends TestCase
 {
@@ -23,24 +22,24 @@ class QueryConditionsTest extends TestCase
                         'rule' => 'created_at',
                         'operator' => '>=',
                         'value' => '2022-06-26 00:00:00',
-                    ]
+                    ],
                 ],
                 [
                     'type' => 'query-builder-rule',
                     'query' => [
                         'rule' => 'age',
                         'operator' => '=',
-                        'value' => '12'
-                    ]
-                ]
-            ]
+                        'value' => '12',
+                    ],
+                ],
+            ],
         ];
     }
 
     public function test_where_conditions()
     {
         $conditions = $this->baseConditions();
-        
+
         $query = LaravelQueryConditions::for(EloquentBuilderTest::class, $conditions);
 
         $this->assertSame('select * from `table` where (`created_at` >= ? and `age` = ?)', $query->toSql());

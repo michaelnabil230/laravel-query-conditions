@@ -3,13 +3,13 @@
 namespace MichaelNabil230\LaravelQueryConditions;
 
 use ArrayAccess;
-use InvalidArgumentException;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Traits\ForwardsCalls;
-use MichaelNabil230\LaravelQueryConditions\Support\ParentQuery;
-use MichaelNabil230\LaravelQueryConditions\Exceptions\InvalidSubject;
+use InvalidArgumentException;
 use MichaelNabil230\LaravelQueryConditions\Exceptions\InvalidArgumentRequest;
+use MichaelNabil230\LaravelQueryConditions\Exceptions\InvalidSubject;
+use MichaelNabil230\LaravelQueryConditions\Support\ParentQuery;
 
 class LaravelQueryConditions implements ArrayAccess
 {
@@ -77,7 +77,7 @@ class LaravelQueryConditions implements ArrayAccess
 
     private function handlerConditionsException($conditions)
     {
-        if (!is_array($conditions)) {
+        if (! is_array($conditions)) {
             throw new InvalidArgumentException('Invalid argument request for argument: conditions');
         }
 
@@ -85,11 +85,11 @@ class LaravelQueryConditions implements ArrayAccess
             throw new InvalidArgumentException('The conditions array is empty');
         }
 
-        if (!array_key_exists('logicalOperator', $conditions)) {
+        if (! array_key_exists('logicalOperator', $conditions)) {
             throw InvalidArgumentRequest::make('logicalOperator');
         }
 
-        if (!array_key_exists('children', $conditions)) {
+        if (! array_key_exists('children', $conditions)) {
             throw InvalidArgumentRequest::make('children');
         }
     }
