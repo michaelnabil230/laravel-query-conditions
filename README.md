@@ -147,11 +147,16 @@ class ConditionController extends Controller
     }
 }
 ```
+## Some screenshots of the package it is a best package
+
+<img src="./screenshots/simpleQuery.png" />
 
 ## TODOS
 - [ ] Convert rules to `Field` class
 - [ ] Format the documents
-- [ ] Add Groupe to conditions
+- [ ] Add groupe to conditions
+- [ ] Test a complicated query
+- [ ] Add unit tests
 
 ## Testing
 
