@@ -149,9 +149,9 @@ class ConditionController extends Controller
 ```
 
 ## TODOS
-- [x] Convert rules to `Field` class
-- [x] Format the documents
-- [x] Add Groupe to conditions
+- [ ] Convert rules to `Field` class
+- [ ] Format the documents
+- [ ] Add Groupe to conditions
 
 ## Testing
 
