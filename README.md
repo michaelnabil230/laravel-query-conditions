@@ -21,12 +21,25 @@ To associate query condonation with a model, the model must implement the follow
 
 ```php
 use Illuminate\Database\Eloquent\Model;
+use MichaelNabil230\LaravelQueryConditions\Support\Condition;
 use MichaelNabil230\LaravelQueryConditions\Concerns\HasQueryCondonation;
 use MichaelNabil230\LaravelQueryConditions\Interfaces\QueryCondonation as InterfacesQueryCondonation;
+use Illuminate\Database\Eloquent\Builder;
 
 class YourModel extends Model implements InterfacesQueryCondonation
 {
     use HasQueryCondonation;
+
+    public function scopeParseQBRule(Builder $query, Condition $condition, string $method): void
+    {
+        if ($condition->rule === 'age') {
+            $query->{$method}('age', $condition->operator, $condition->value);
+        }
+
+        if ($condition->rule === 'created_at') {
+            $query->{$method}('created_at', $condition->operator, $condition->value);
+        }
+    }
 }
 ```
 ## Preparing Vue
@@ -120,18 +133,18 @@ First call the directive in blade or vue (and pass condonations):
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use MichaelNabil230\LaravelQueryConditions\LaravelQueryConditions;
+use App\Models\User;
 
 class ConditionController extends Controller
 {
-    public function getFromQueryConditions(Request $request)
+    public function getDataFromQueryConditions(Request $request)
     {
-        $result = $request->queryConditions();
-
-        $query = \App\Models\User::query();
-        $query->parseQBGroup($result, $result->method);
+        $users = LaravelQueryConditions::for(User::class, $request->input('query'))
+            ->get();
 
         return [
-            $query->get(),
+            'users' => $users,
         ];
     }
 }
@@ -141,10 +154,10 @@ class ConditionController extends Controller
 <img src="./screenshots/simpleQuery.png" />
 
 ## TODOS
-- [ ] Convert rules to `Field` class
 - [ ] Format the documents
-- [ ] Add groupe to conditions
+- [ ] Add groupe in to conditions
 - [ ] Test a complicated query
+- [ ] Implement `Fields` classes in to FrontEnd 
 - [ ] Add unit tests
 
 ## Testing

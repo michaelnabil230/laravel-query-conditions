@@ -4,18 +4,19 @@ namespace MichaelNabil230\LaravelQueryConditions\Support;
 
 class Query
 {
-    public ?MiniQuery $miniQuery;
+    public ?Condition $condition;
     public ?string $method;
     /** @var Children[]|null */
     public ?array $children;
 
     public function __construct(array $query)
     {
-        $this->miniQuery = MiniQuery::create(
+        $this->condition = Condition::create(
             rule: $query['rule'] ?? '',
             operator: $query['operator'] ?? '=',
             value: $query['value'] ?? '',
         );
+
         $this->method = $query['method'] ?? 'where';
         $this->children = $query['children'] ?? [];
     }
@@ -27,13 +28,13 @@ class Query
 
     public function __toString(): string
     {
-        return $this->miniQuery->__toString() . ' ' . $this->method . ' ' . $this->children;
+        return $this->condition->__toString() . ' ' . $this->method . ' ' . $this->children;
     }
 
     public function toArray(): array
     {
         return [
-            'miniQuery' => $this->miniQuery->toArray(),
+            'condition' => $this->condition->toArray(),
             'method' => $this->method,
             'children' => $this->children,
         ];

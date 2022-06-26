@@ -3,7 +3,7 @@
 namespace MichaelNabil230\LaravelQueryConditions\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
-use MichaelNabil230\LaravelQueryConditions\Support\MiniQuery;
+use MichaelNabil230\LaravelQueryConditions\Support\Condition;
 use MichaelNabil230\LaravelQueryConditions\Support\ParentQuery;
 
 trait HasQueryCondonation
@@ -20,11 +20,11 @@ trait HasQueryCondonation
                 if ($child->isType('query-builder-group')) {
                     $query->parseQBGroup($child->toParentQuery(), $subMethod);
                 } else {
-                    $query->parseQBRule($child->query->miniQuery, $subMethod);
+                    $query->parseQBRule($child->query->condition, $subMethod);
                 }
             }
         });
     }
 
-    abstract protected function scopeParseQBRule(Builder $query, MiniQuery $miniQuery, string $method): void;
+    abstract protected function scopeParseQBRule(Builder $query, Condition $condition, string $method): void;
 }

@@ -2,7 +2,7 @@
 
 namespace MichaelNabil230\LaravelQueryConditions\Support;
 
-class MiniQuery
+class Condition
 {
     public function __construct(
         public string $rule,
