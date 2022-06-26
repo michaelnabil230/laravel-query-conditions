@@ -1,3 +1,3 @@
 # Changelog
 
-All notable changes to `laravel-condition-query` will be documented in this file.
+All notable changes to `laravel-query-conditions` will be documented in this file.
