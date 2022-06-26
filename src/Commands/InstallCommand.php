@@ -51,9 +51,9 @@ class InstallCommand extends Command
         });
 
         // Components...
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
+        (new Filesystem())->ensureDirectoryExists(resource_path('js/Components'));
 
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/vue/resources/js/Components', resource_path('js/Components'));
+        (new Filesystem())->copyDirectory(__DIR__ . '/../../stubs/vue/resources/js/Components', resource_path('js/Components'));
 
         // Tailwind...
         copy(__DIR__ . '/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
@@ -75,7 +75,7 @@ class InstallCommand extends Command
      */
     protected static function updateNodePackages(callable $callback, $dev = true)
     {
-        if (!file_exists(base_path('package.json'))) {
+        if (! file_exists(base_path('package.json'))) {
             return;
         }
 

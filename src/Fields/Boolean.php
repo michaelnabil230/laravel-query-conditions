@@ -3,7 +3,6 @@
 namespace MichaelNabil230\LaravelQueryConditions\Fields;
 
 use Illuminate\Support\Arr;
-use MichaelNabil230\LaravelQueryConditions\Fields\Field;
 
 class Boolean extends Field
 {

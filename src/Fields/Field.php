@@ -2,16 +2,18 @@
 
 namespace MichaelNabil230\LaravelQueryConditions\Fields;
 
-use JsonSerializable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use MichaelNabil230\LaravelQueryConditions\Fields\Concerns\Metable;
+use JsonSerializable;
 use MichaelNabil230\LaravelQueryConditions\Fields\Concerns\HasHelpText;
 use MichaelNabil230\LaravelQueryConditions\Fields\Concerns\HasOperators;
+use MichaelNabil230\LaravelQueryConditions\Fields\Concerns\Metable;
 
 abstract class Field implements JsonSerializable
 {
-    use Metable, HasHelpText, HasOperators;
+    use Metable;
+    use HasHelpText;
+    use HasOperators;
 
     /**
      * The displayable label of the field.

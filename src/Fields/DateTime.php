@@ -4,7 +4,6 @@ namespace MichaelNabil230\LaravelQueryConditions\Fields;
 
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
-use MichaelNabil230\LaravelQueryConditions\Fields\Field;
 
 class DateTime extends Field
 {
@@ -14,7 +13,7 @@ class DateTime extends Field
      * @var array
      */
     public $operators = ['=', '<>', '<', '<=', '>', '>='];
-    
+
     /**
      * The minimum value that can be assigned to the field.
      *

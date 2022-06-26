@@ -3,10 +3,10 @@
 namespace MichaelNabil230\LaravelQueryConditions;
 
 use Illuminate\Http\Request;
+use MichaelNabil230\LaravelQueryConditions\Commands\InstallCommand;
+use MichaelNabil230\LaravelQueryConditions\Support\ParentQuery;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use MichaelNabil230\LaravelQueryConditions\Support\ParentQuery;
-use MichaelNabil230\LaravelQueryConditions\Commands\InstallCommand;
 
 class LaravelQueryConditionsServiceProvider extends PackageServiceProvider
 {

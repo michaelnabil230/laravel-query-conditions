@@ -4,7 +4,6 @@ namespace MichaelNabil230\LaravelQueryConditions\Fields;
 
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
-use MichaelNabil230\LaravelQueryConditions\Fields\Field;
 
 class Date extends Field
 {
@@ -14,7 +13,7 @@ class Date extends Field
      * @var array
      */
     public $operators = ['=', '<>', '<', '<=', '>', '>='];
-    
+
     /**
      * The step size the field will increment and decrement by.
      *

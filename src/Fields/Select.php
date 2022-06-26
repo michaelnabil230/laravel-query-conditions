@@ -2,8 +2,6 @@
 
 namespace MichaelNabil230\LaravelQueryConditions\Fields;
 
-use MichaelNabil230\LaravelQueryConditions\Fields\Field;
-
 class Select extends Field
 {
     /**

@@ -2,8 +2,6 @@
 
 namespace MichaelNabil230\LaravelQueryConditions\Fields;
 
-use MichaelNabil230\LaravelQueryConditions\Fields\Text;
-
 class Number extends Text
 {
     /**
