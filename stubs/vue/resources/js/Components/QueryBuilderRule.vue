@@ -38,7 +38,7 @@
             </div>
             <p class="mt-2 text-sm text-gray-500" v-if="rule.helpText" v-text="rule.helpText"></p>
         </div>
-        <div>
+        <div class="flex items-end">
             <button v-on:click="remove"
                 class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"

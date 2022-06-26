@@ -3,7 +3,7 @@
         <div class="m-2">
             <div class="shadow sm:rounded-md sm:overflow-hidden">
                 <div class="bg-white">
-                    <div class="flex justify-between items-center border-b-2 py-4 sm:p-6">
+                    <div class="flex flex-wrap justify-between items-center border-b-2 py-4 sm:p-6">
                         <div>
                             <h1 class="md:px-0 px-2 text-lg leading-6 font-medium text-gray-900">
                                 Conditions
@@ -13,8 +13,8 @@
                                 operators are supported.
                             </p>
                         </div>
-                        <div class="flex justify-around items-center">
-                            <div>
+                        <div class="flex flex-wrap items-end ">
+                            <div class="m-2 mb-2 md:m-0 md:mb-0">
                                 <label for="matchTypes" class="block text-sm font-medium text-gray-700">
                                     {{ labels.matchType }}
                                 </label>
