@@ -43,12 +43,7 @@ class LaravelQueryConditions implements ArrayAccess
         return new static($subject, $conditions);
     }
 
-    /**
-     * @param Builder $subject
-     *
-     * @return $this
-     */
-    protected function initializeSubject($subject): static
+    protected function initializeSubject(Builder $subject): static
     {
         throw_unless(
             $subject instanceof Builder,
@@ -60,24 +55,21 @@ class LaravelQueryConditions implements ArrayAccess
         return $this;
     }
 
-    /**
-     * Format from the request.
-     *
-     * @param  array $conditions
-     * @return $this
-     */
-    protected function formatFromRequest($conditions): static
+    protected function formatFromRequest(array $conditions): static
     {
         $this->handlerConditionsException($conditions);
 
-        $this->subQuery = ParentQuery::create($conditions['logicalOperator'], $conditions['children']);
+        $this->subQuery = ParentQuery::create(
+            method: data_get($conditions, 'logicalOperator', 'all'),
+            children: data_get($conditions, 'children')
+        );
 
         return $this;
     }
 
-    private function handlerConditionsException($conditions)
+    private function handlerConditionsException(array $conditions)
     {
-        if (! is_array($conditions)) {
+        if (!is_array($conditions)) {
             throw new InvalidArgumentException('Invalid argument request for argument: conditions');
         }
 
@@ -85,11 +77,11 @@ class LaravelQueryConditions implements ArrayAccess
             throw new InvalidArgumentException('The conditions array is empty');
         }
 
-        if (! array_key_exists('logicalOperator', $conditions)) {
+        if (!array_key_exists('logicalOperator', $conditions)) {
             throw InvalidArgumentRequest::make('logicalOperator');
         }
 
-        if (! array_key_exists('children', $conditions)) {
+        if (!array_key_exists('children', $conditions)) {
             throw InvalidArgumentRequest::make('children');
         }
     }

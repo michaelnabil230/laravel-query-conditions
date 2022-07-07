@@ -12,13 +12,13 @@ class Query
     public function __construct(array $query)
     {
         $this->condition = Condition::create(
-            rule: $query['rule'] ?? '',
-            operator: $query['operator'] ?? '=',
-            value: $query['value'] ?? '',
+            rule: data_get($query, 'rule', ''),
+            operator: data_get($query, 'operator', '='),
+            value: data_get($query, 'value', ''),
         );
 
-        $this->method = $query['method'] ?? 'where';
-        $this->children = $query['children'] ?? [];
+        $this->method = data_get($query, 'method', 'where');
+        $this->children = data_get($query, 'children', []);
     }
 
     public static function create(array $query): self

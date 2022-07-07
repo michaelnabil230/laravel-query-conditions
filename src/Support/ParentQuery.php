@@ -29,9 +29,9 @@ class ParentQuery
     {
         return collect($children)
             ->map(function (array $child) {
-                $query = Query::create($child['query']);
+                $query = Query::create(data_get($child, 'query'));
 
-                return Children::create($child['type'], $query);
+                return Children::create(data_get($child, 'type'), $query);
             })
             ->toArray();
     }
