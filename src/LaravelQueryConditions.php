@@ -69,7 +69,7 @@ class LaravelQueryConditions implements ArrayAccess
 
     private function handlerConditionsException(array $conditions)
     {
-        if (!is_array($conditions)) {
+        if (! is_array($conditions)) {
             throw new InvalidArgumentException('Invalid argument request for argument: conditions');
         }
 
@@ -77,11 +77,11 @@ class LaravelQueryConditions implements ArrayAccess
             throw new InvalidArgumentException('The conditions array is empty');
         }
 
-        if (!array_key_exists('logicalOperator', $conditions)) {
+        if (! array_key_exists('logicalOperator', $conditions)) {
             throw InvalidArgumentRequest::make('logicalOperator');
         }
 
-        if (!array_key_exists('children', $conditions)) {
+        if (! array_key_exists('children', $conditions)) {
             throw InvalidArgumentRequest::make('children');
         }
     }
