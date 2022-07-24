@@ -3,14 +3,14 @@
 namespace MichaelNabil230\QueryConditions;
 
 use ArrayAccess;
-use InvalidArgumentException;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Traits\ForwardsCalls;
-use MichaelNabil230\QueryConditions\Support\ParentQuery;
+use InvalidArgumentException;
+use MichaelNabil230\QueryConditions\Exceptions\InvalidArgumentRequest;
 use MichaelNabil230\QueryConditions\Exceptions\InvalidSubject;
 use MichaelNabil230\QueryConditions\Interfaces\QueryCondonation;
-use MichaelNabil230\QueryConditions\Exceptions\InvalidArgumentRequest;
+use MichaelNabil230\QueryConditions\Support\ParentQuery;
 
 /**
  * @mixin Builder
@@ -26,9 +26,8 @@ final class QueryConditions implements ArrayAccess
     protected ParentQuery $subQuery;
 
     /**
-     * @param Builder|string $subject
-     * @param array $conditions
-     *
+     * @param  Builder|string  $subject
+     * @param  array  $conditions
      * @return void
      */
     public function __construct($subject, $conditions)
@@ -39,9 +38,8 @@ final class QueryConditions implements ArrayAccess
     }
 
     /**
-     * @param Builder|string $subject
-     * @param array $conditions
-     *
+     * @param  Builder|string  $subject
+     * @param  array  $conditions
      * @return static
      */
     public static function for($subject, $conditions): static
@@ -79,7 +77,7 @@ final class QueryConditions implements ArrayAccess
 
     private function handlerConditionsException(array $conditions)
     {
-        if (!is_array($conditions)) {
+        if (! is_array($conditions)) {
             throw new InvalidArgumentException('Invalid argument request for argument: conditions');
         }
 
@@ -87,11 +85,11 @@ final class QueryConditions implements ArrayAccess
             throw new InvalidArgumentException('The conditions array is empty');
         }
 
-        if (!array_key_exists('logicalOperator', $conditions)) {
+        if (! array_key_exists('logicalOperator', $conditions)) {
             throw InvalidArgumentRequest::make('logicalOperator');
         }
 
-        if (!array_key_exists('children', $conditions)) {
+        if (! array_key_exists('children', $conditions)) {
             throw InvalidArgumentRequest::make('children');
         }
     }

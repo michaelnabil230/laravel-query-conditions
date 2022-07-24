@@ -5,7 +5,9 @@ namespace MichaelNabil230\QueryConditions\Support;
 class Query
 {
     public Condition $condition;
+
     public string $method;
+
     /** @var Children[] */
     public array $children;
 
@@ -28,7 +30,7 @@ class Query
 
     public function __toString(): string
     {
-        return $this->condition->__toString() . ' ' . $this->method . ' ' . json_encode($this->children);
+        return $this->condition->__toString().' '.$this->method.' '.json_encode($this->children);
     }
 
     public function toArray(): array

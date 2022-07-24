@@ -21,7 +21,7 @@ class Condition
 
     public function __toString(): string
     {
-        return $this->rule . ' ' . $this->operator . ' ' . $this->value;
+        return $this->rule.' '.$this->operator.' '.$this->value;
     }
 
     public function toArray(): array

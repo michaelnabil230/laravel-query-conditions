@@ -5,13 +5,13 @@ namespace MichaelNabil230\QueryConditions\Support;
 class ParentQuery
 {
     public string $method;
+
     /** @var Children[] */
     public array $children = [];
 
     /**
-     * @param string $method
-     * @param Children[] $children
-     *
+     * @param  string  $method
+     * @param  Children[]  $children
      * @return void
      */
     public function __construct(string $method, array $children)

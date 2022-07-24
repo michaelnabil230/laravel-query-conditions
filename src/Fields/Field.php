@@ -11,6 +11,7 @@ use MichaelNabil230\QueryConditions\Fields\Concerns\Metable;
 
 /**
  * @phpstan-consistent-constructor
+ *
  * @method static static make(string $label, string|null $rule = null)
  */
 abstract class Field implements JsonSerializable

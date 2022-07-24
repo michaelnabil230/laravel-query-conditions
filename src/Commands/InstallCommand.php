@@ -43,23 +43,23 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                "tailwindcss" => "^3.1.4",
-                "@tailwindcss/forms" => "^0.5.2",
-                "postcss" => "^8.4.14",
-                "vue" => "^2.5.17",
+                'tailwindcss' => '^3.1.4',
+                '@tailwindcss/forms' => '^0.5.2',
+                'postcss' => '^8.4.14',
+                'vue' => '^2.5.17',
             ] + $packages;
         });
 
         // Components...
         (new Filesystem())->ensureDirectoryExists(resource_path('js/Components'));
 
-        (new Filesystem())->copyDirectory(__DIR__ . '/../../stubs/vue/resources/js/Components', resource_path('js/Components'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/vue/resources/js/Components', resource_path('js/Components'));
 
         // Tailwind...
-        copy(__DIR__ . '/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
-        copy(__DIR__ . '/../../stubs/default/resources/js/app.js', resource_path('js/app.js'));
-        copy(__DIR__ . '/../../stubs/common/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__ . '/../../stubs/vue/resources/js/app.js', resource_path('js/app.js'));
+        copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
+        copy(__DIR__.'/../../stubs/default/resources/js/app.js', resource_path('js/app.js'));
+        copy(__DIR__.'/../../stubs/common/tailwind.config.js', base_path('tailwind.config.js'));
+        copy(__DIR__.'/../../stubs/vue/resources/js/app.js', resource_path('js/app.js'));
 
         $this->info('QueryConditions scaffolding installed successfully.');
 
@@ -75,7 +75,7 @@ class InstallCommand extends Command
      */
     protected static function updateNodePackages(callable $callback, $dev = true)
     {
-        if (!file_exists(base_path('package.json'))) {
+        if (! file_exists(base_path('package.json'))) {
             return;
         }
 
@@ -92,7 +92,7 @@ class InstallCommand extends Command
 
         file_put_contents(
             base_path('package.json'),
-            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL
+            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
         );
     }
 }

@@ -63,7 +63,7 @@ class Select extends Field
         return collect($options ?? [])->map(function ($label, $value) {
             if (isset($label['group'])) {
                 return [
-                    'label' => $label['group'] . ' - ' . $label['label'],
+                    'label' => $label['group'].' - '.$label['label'],
                     'value' => $value,
                 ];
             }
