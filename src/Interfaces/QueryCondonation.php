@@ -8,7 +8,7 @@ use MichaelNabil230\QueryConditions\Support\ParentQuery;
 
 interface QueryCondonation
 {
-    public function parseQBGroup(Builder $query, ParentQuery $group, string $method): void;
+    public function scopeParseQBGroup(Builder $query, ParentQuery $parentQuery, string $method): void;
 
-    public function parseQBRule(Builder $query, Condition $Condition, string $method): void;
+    public function scopeParseQBRule(Builder $query, Condition $Condition, string $method): void;
 }

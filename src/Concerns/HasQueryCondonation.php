@@ -8,15 +8,15 @@ use MichaelNabil230\QueryConditions\Support\ParentQuery;
 
 trait HasQueryCondonation
 {
-    public function parseQBGroup(Builder $query, ParentQuery $group, string $method): void
+    public function scopeParseQBGroup(Builder $query, ParentQuery $parentQuery, string $method): void
     {
         // TODO: Remove condition it is not needed in feature
         $method = $method == 'all' ? 'where' : 'orWhere';
 
-        $query->{$method}(function ($query) use ($group) {
-            $subMethod = $group->method == 'all' ? 'where' : 'orWhere';
+        $query->{$method}(function ($query) use ($parentQuery) {
+            $subMethod = $parentQuery->method == 'all' ? 'where' : 'orWhere';
 
-            foreach ($group->children as $child) {
+            foreach ($parentQuery->children as $child) {
                 if ($child->isType('query-builder-group')) {
                     $query->parseQBGroup($child->toParentQuery(), $subMethod);
                 } else {
@@ -26,5 +26,5 @@ trait HasQueryCondonation
         });
     }
 
-    abstract protected function parseQBRule(Builder $query, Condition $condition, string $method): void;
+    abstract protected function scopeParseQBRule(Builder $query, Condition $condition, string $method): void;
 }

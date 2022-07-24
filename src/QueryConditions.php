@@ -9,13 +9,12 @@ use Illuminate\Support\Traits\ForwardsCalls;
 use InvalidArgumentException;
 use MichaelNabil230\QueryConditions\Exceptions\InvalidArgumentRequest;
 use MichaelNabil230\QueryConditions\Exceptions\InvalidSubject;
-use MichaelNabil230\QueryConditions\Interfaces\QueryCondonation;
 use MichaelNabil230\QueryConditions\Support\ParentQuery;
 
 /**
  * @mixin Builder
  */
-final class QueryConditions implements ArrayAccess
+class QueryConditions implements ArrayAccess
 {
     use ForwardsCalls;
 
@@ -23,7 +22,7 @@ final class QueryConditions implements ArrayAccess
 
     protected Builder $subject;
 
-    protected ParentQuery $subQuery;
+    protected ParentQuery $parentQuery;
 
     /**
      * @param  Builder|string  $subject
@@ -34,7 +33,7 @@ final class QueryConditions implements ArrayAccess
     {
         $this->initializeSubject($subject)
             ->formatFromRequest($conditions)
-            ->initializeParseQBGroup();
+            ->applyQuery();
     }
 
     /**
@@ -67,7 +66,7 @@ final class QueryConditions implements ArrayAccess
     {
         $this->handlerConditionsException($conditions);
 
-        $this->subQuery = ParentQuery::create(
+        $this->parentQuery = ParentQuery::create(
             method: data_get($conditions, 'logicalOperator', 'all'),
             children: data_get($conditions, 'children')
         );
@@ -94,13 +93,9 @@ final class QueryConditions implements ArrayAccess
         }
     }
 
-    protected function initializeParseQBGroup(): static
+    protected function applyQuery(): Builder
     {
-        if ($this->subject instanceof QueryCondonation) {
-            $this->subject->parseQBGroup($this->subject, $this->subQuery, $this->subQuery->method);
-        }
-
-        return $this;
+        return $this->subject->parseQBGroup($this->parentQuery, $this->parentQuery->method);
     }
 
     public function __call($name, $arguments)

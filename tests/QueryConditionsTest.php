@@ -87,7 +87,7 @@ class EloquentBuilderTest extends Model implements InterfacesQueryCondonation
 
     protected $table = 'table';
 
-    public function parseQBRule(Builder $query, Condition $condition, string $method): void
+    public function scopeParseQBRule(Builder $query, Condition $condition, string $method): void
     {
         if ($condition->rule === 'age') {
             $query->{$method}('age', $condition->operator, $condition->value);
