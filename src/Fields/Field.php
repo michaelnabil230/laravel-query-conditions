@@ -1,14 +1,18 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions\Fields;
+namespace MichaelNabil230\QueryConditions\Fields;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use JsonSerializable;
-use MichaelNabil230\LaravelQueryConditions\Fields\Concerns\HasHelpText;
-use MichaelNabil230\LaravelQueryConditions\Fields\Concerns\HasOperators;
-use MichaelNabil230\LaravelQueryConditions\Fields\Concerns\Metable;
+use MichaelNabil230\QueryConditions\Fields\Concerns\HasHelpText;
+use MichaelNabil230\QueryConditions\Fields\Concerns\HasOperators;
+use MichaelNabil230\QueryConditions\Fields\Concerns\Metable;
 
+/**
+ * @phpstan-consistent-constructor
+ * @method static static make(string $label, string|null $rule = null)
+ */
 abstract class Field implements JsonSerializable
 {
     use Metable;
@@ -28,6 +32,13 @@ abstract class Field implements JsonSerializable
      * @var string
      */
     public $rule;
+
+    /**
+     * The default operator of the field.
+     *
+     * @var string
+     */
+    public $defaultOperator;
 
     /**
      * The callback to be used to resolve the field's display value.
@@ -51,13 +62,28 @@ abstract class Field implements JsonSerializable
     }
 
     /**
-     * Create a new element.
+     * Create a new field.
      *
+     * @param  string  $label
+     * @param  string|null  $rule
      * @return static
      */
-    public static function make(...$arguments)
+    public static function make($label, $rule = null)
     {
-        return new static(...$arguments);
+        return new static($label, $rule);
+    }
+
+    /**
+     * Set the placeholder text for the field if supported.
+     *
+     * @param  string  $text
+     * @return $this
+     */
+    public function placeholder($text)
+    {
+        $this->withMeta(['extraAttributes' => ['placeholder' => $text]]);
+
+        return $this;
     }
 
     /**
@@ -97,9 +123,9 @@ abstract class Field implements JsonSerializable
     /**
      * Prepare the field for JSON serialization.
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return array_merge([
             'label' => $this->label,

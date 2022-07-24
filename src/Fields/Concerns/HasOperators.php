@@ -1,13 +1,13 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions\Fields\Concerns;
+namespace MichaelNabil230\QueryConditions\Fields\Concerns;
 
 trait HasOperators
 {
     /**
      * The operators of the field.
      *
-     * @var array
+     * @var array<int, string>
      */
     public $operators;
 
@@ -21,7 +21,7 @@ trait HasOperators
     /**
      * Define operators for the field.
      *
-     * @param  array  $operators
+     * @param  array<int, string>  $operators
      * @return $this
      */
     public function operators($operators)
@@ -47,7 +47,7 @@ trait HasOperators
     /**
      * Return the operators of the field.
      *
-     * @return array
+     * @return array<int, string>
      */
     public function getOperators()
     {

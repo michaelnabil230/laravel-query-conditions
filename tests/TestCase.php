@@ -1,8 +1,8 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions\Tests;
+namespace MichaelNabil230\QueryConditions\Tests;
 
-use MichaelNabil230\LaravelQueryConditions\LaravelQueryConditionsServiceProvider;
+use MichaelNabil230\QueryConditions\QueryConditionsServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -10,7 +10,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            LaravelQueryConditionsServiceProvider::class,
+            QueryConditionsServiceProvider::class,
         ];
     }
 }

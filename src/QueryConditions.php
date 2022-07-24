@@ -1,17 +1,21 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions;
+namespace MichaelNabil230\QueryConditions;
 
 use ArrayAccess;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Traits\ForwardsCalls;
 use InvalidArgumentException;
-use MichaelNabil230\LaravelQueryConditions\Exceptions\InvalidArgumentRequest;
-use MichaelNabil230\LaravelQueryConditions\Exceptions\InvalidSubject;
-use MichaelNabil230\LaravelQueryConditions\Support\ParentQuery;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Traits\ForwardsCalls;
+use MichaelNabil230\QueryConditions\Support\ParentQuery;
+use MichaelNabil230\QueryConditions\Exceptions\InvalidSubject;
+use MichaelNabil230\QueryConditions\Interfaces\QueryCondonation;
+use MichaelNabil230\QueryConditions\Exceptions\InvalidArgumentRequest;
 
-class LaravelQueryConditions implements ArrayAccess
+/**
+ * @mixin Builder
+ */
+final class QueryConditions implements ArrayAccess
 {
     use ForwardsCalls;
 
@@ -21,11 +25,17 @@ class LaravelQueryConditions implements ArrayAccess
 
     protected ParentQuery $subQuery;
 
-    public function __construct(Builder $subject, array $conditions)
+    /**
+     * @param Builder|string $subject
+     * @param array $conditions
+     *
+     * @return void
+     */
+    public function __construct($subject, $conditions)
     {
         $this->initializeSubject($subject)
             ->formatFromRequest($conditions)
-            ->initializeScope();
+            ->initializeParseQBGroup();
     }
 
     /**
@@ -69,7 +79,7 @@ class LaravelQueryConditions implements ArrayAccess
 
     private function handlerConditionsException(array $conditions)
     {
-        if (! is_array($conditions)) {
+        if (!is_array($conditions)) {
             throw new InvalidArgumentException('Invalid argument request for argument: conditions');
         }
 
@@ -77,20 +87,22 @@ class LaravelQueryConditions implements ArrayAccess
             throw new InvalidArgumentException('The conditions array is empty');
         }
 
-        if (! array_key_exists('logicalOperator', $conditions)) {
+        if (!array_key_exists('logicalOperator', $conditions)) {
             throw InvalidArgumentRequest::make('logicalOperator');
         }
 
-        if (! array_key_exists('children', $conditions)) {
+        if (!array_key_exists('children', $conditions)) {
             throw InvalidArgumentRequest::make('children');
         }
     }
 
-    protected function initializeScope()
+    protected function initializeParseQBGroup(): static
     {
-        $query = $this->subject->parseQBGroup($this->subQuery, $this->subQuery->method);
+        if ($this->subject instanceof QueryCondonation) {
+            $this->subject->parseQBGroup($this->subject, $this->subQuery, $this->subQuery->method);
+        }
 
-        return $query;
+        return $this;
     }
 
     public function __call($name, $arguments)

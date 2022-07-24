@@ -1,13 +1,13 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions\Fields;
+namespace MichaelNabil230\QueryConditions\Fields;
 
 class Select extends Field
 {
     /**
      * The operators of the field.
      *
-     * @var array
+     * @var array<int, string>
      */
     public $operators = ['='];
 
@@ -39,7 +39,7 @@ class Select extends Field
     public function displayUsingLabels()
     {
         $this->displayUsing(function ($value) {
-            return collect($this->serializeOptions(false))
+            return collect($this->serializeOptions())
                 ->where('value', $value)
                 ->first()['label'] ?? $value;
         });
@@ -83,8 +83,6 @@ class Select extends Field
             'options' => $this->serializeOptions(),
         ]);
 
-        return array_merge(parent::jsonSerialize(), [
-            'searchable' => $this->serializeOptions(),
-        ]);
+        return parent::jsonSerialize();
     }
 }

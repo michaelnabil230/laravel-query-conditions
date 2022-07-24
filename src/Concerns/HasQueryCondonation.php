@@ -1,14 +1,14 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions\Concerns;
+namespace MichaelNabil230\QueryConditions\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
-use MichaelNabil230\LaravelQueryConditions\Support\Condition;
-use MichaelNabil230\LaravelQueryConditions\Support\ParentQuery;
+use MichaelNabil230\QueryConditions\Support\Condition;
+use MichaelNabil230\QueryConditions\Support\ParentQuery;
 
 trait HasQueryCondonation
 {
-    public function scopeParseQBGroup(Builder $query, ParentQuery $group, string $method): void
+    public function parseQBGroup(Builder $query, ParentQuery $group, string $method): void
     {
         // TODO: Remove condition it is not needed in feature
         $method = $method == 'all' ? 'where' : 'orWhere';
@@ -26,5 +26,5 @@ trait HasQueryCondonation
         });
     }
 
-    abstract protected function scopeParseQBRule(Builder $query, Condition $condition, string $method): void;
+    abstract protected function parseQBRule(Builder $query, Condition $condition, string $method): void;
 }

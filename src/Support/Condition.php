@@ -1,6 +1,6 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions\Support;
+namespace MichaelNabil230\QueryConditions\Support;
 
 class Condition
 {
@@ -24,7 +24,7 @@ class Condition
         return $this->rule . ' ' . $this->operator . ' ' . $this->value;
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'rule' => $this->rule,

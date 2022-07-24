@@ -1,6 +1,6 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions\Support;
+namespace MichaelNabil230\QueryConditions\Support;
 
 class Children
 {

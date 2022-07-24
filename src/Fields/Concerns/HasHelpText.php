@@ -1,6 +1,6 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions\Fields\Concerns;
+namespace MichaelNabil230\QueryConditions\Fields\Concerns;
 
 trait HasHelpText
 {
@@ -14,14 +14,14 @@ trait HasHelpText
     /**
      * The width of the help text tooltip.
      *
-     * @var string
+     * @var string|int
      */
     public $helpWidth = 250;
 
     /**
      * Add help text to the metric.
      *
-     * @param string $text
+     * @param  string  $text
      * @return $this
      */
     public function help($text)
@@ -44,7 +44,7 @@ trait HasHelpText
     /**
      * Set the width for the help text tooltip.
      *
-     * @param  string
+     * @param  string  $helpWidth
      * @return $this
      */
     public function helpWidth($helpWidth)

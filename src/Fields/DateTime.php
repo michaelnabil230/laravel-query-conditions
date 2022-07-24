@@ -1,6 +1,6 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions\Fields;
+namespace MichaelNabil230\QueryConditions\Fields;
 
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
@@ -10,7 +10,7 @@ class DateTime extends Field
     /**
      * The operators of the field.
      *
-     * @var array
+     * @var array<int, string>
      */
     public $operators = ['=', '<>', '<', '<=', '>', '>='];
 

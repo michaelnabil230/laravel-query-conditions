@@ -1,6 +1,6 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions\Commands;
+namespace MichaelNabil230\QueryConditions\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -19,7 +19,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Install the LaravelQueryConditions resources';
+    protected $description = 'Install the QueryConditions resources';
 
     /**
      * Execute the console command.
@@ -34,7 +34,7 @@ class InstallCommand extends Command
     }
 
     /**
-     * Install the Vue LaravelQueryConditions stack.
+     * Install the Vue QueryConditions stack.
      *
      * @return void
      */
@@ -61,7 +61,7 @@ class InstallCommand extends Command
         copy(__DIR__ . '/../../stubs/common/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__ . '/../../stubs/vue/resources/js/app.js', resource_path('js/app.js'));
 
-        $this->info('LaravelQueryConditions scaffolding installed successfully.');
+        $this->info('QueryConditions scaffolding installed successfully.');
 
         $this->comment('Please execute the "npm install" && "npm run dev" commands to build your assets.');
     }
@@ -75,7 +75,7 @@ class InstallCommand extends Command
      */
     protected static function updateNodePackages(callable $callback, $dev = true)
     {
-        if (! file_exists(base_path('package.json'))) {
+        if (!file_exists(base_path('package.json'))) {
             return;
         }
 

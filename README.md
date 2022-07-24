@@ -21,16 +21,16 @@ To associate query condonation with a model, the model must implement the follow
 
 ```php
 use Illuminate\Database\Eloquent\Model;
-use MichaelNabil230\LaravelQueryConditions\Support\Condition;
-use MichaelNabil230\LaravelQueryConditions\Concerns\HasQueryCondonation;
-use MichaelNabil230\LaravelQueryConditions\Interfaces\QueryCondonation as InterfacesQueryCondonation;
+use MichaelNabil230\QueryConditions\Support\Condition;
+use MichaelNabil230\QueryConditions\Concerns\HasQueryCondonation;
+use MichaelNabil230\QueryConditions\Interfaces\QueryCondonation as InterfacesQueryCondonation;
 use Illuminate\Database\Eloquent\Builder;
 
 class YourModel extends Model implements InterfacesQueryCondonation
 {
     use HasQueryCondonation;
 
-    public function scopeParseQBRule(Builder $query, Condition $condition, string $method): void
+    public function parseQBRule(Builder $query, Condition $condition, string $method): void
     {
         if ($condition->rule === 'age') {
             $query->{$method}('age', $condition->operator, $condition->value);
@@ -133,14 +133,14 @@ First call the directive in blade or vue (and pass condonations):
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use MichaelNabil230\LaravelQueryConditions\LaravelQueryConditions;
+use MichaelNabil230\QueryConditions\QueryConditions;
 use App\Models\User;
 
 class ConditionController extends Controller
 {
     public function getDataFromQueryConditions(Request $request)
     {
-        $users = LaravelQueryConditions::for(User::class, $request->input('query'))
+        $users = QueryConditions::for(User::class, $request->input('query'))
             ->get();
 
         return [

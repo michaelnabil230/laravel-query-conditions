@@ -1,17 +1,17 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions;
+namespace MichaelNabil230\QueryConditions;
 
-use MichaelNabil230\LaravelQueryConditions\Commands\InstallCommand;
+use MichaelNabil230\QueryConditions\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class LaravelQueryConditionsServiceProvider extends PackageServiceProvider
+class QueryConditionsServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('laravel-query-conditions')
+            ->name('query-conditions')
             ->hasCommand(InstallCommand::class);
     }
 }

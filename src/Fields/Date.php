@@ -1,6 +1,6 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions\Fields;
+namespace MichaelNabil230\QueryConditions\Fields;
 
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
@@ -10,9 +10,23 @@ class Date extends Field
     /**
      * The operators of the field.
      *
-     * @var array
+     * @var array<int, string>
      */
     public $operators = ['=', '<>', '<', '<=', '>', '>='];
+
+    /**
+     * The minimum value that can be assigned to the field.
+     *
+     * @var string|null
+     */
+    public $min;
+
+    /**
+     * The maximum value that can be assigned to the field.
+     *
+     * @var string|null
+     */
+    public $max;
 
     /**
      * The step size the field will increment and decrement by.

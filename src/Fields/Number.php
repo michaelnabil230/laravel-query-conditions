@@ -1,13 +1,13 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions\Fields;
+namespace MichaelNabil230\QueryConditions\Fields;
 
 class Number extends Text
 {
     /**
      * The operators of the field.
      *
-     * @var array
+     * @var array<int, string>
      */
     public $operators = ['=', '<>', '<', '<=', '>', '>='];
 

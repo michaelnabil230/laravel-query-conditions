@@ -1,13 +1,13 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions\Support;
+namespace MichaelNabil230\QueryConditions\Support;
 
 class Query
 {
-    public ?Condition $condition;
-    public ?string $method;
-    /** @var Children[]|null */
-    public ?array $children;
+    public Condition $condition;
+    public string $method;
+    /** @var Children[] */
+    public array $children;
 
     public function __construct(array $query)
     {
@@ -28,7 +28,7 @@ class Query
 
     public function __toString(): string
     {
-        return $this->condition->__toString() . ' ' . $this->method . ' ' . $this->children;
+        return $this->condition->__toString() . ' ' . $this->method . ' ' . json_encode($this->children);
     }
 
     public function toArray(): array

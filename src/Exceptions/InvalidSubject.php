@@ -1,10 +1,10 @@
 <?php
 
-namespace MichaelNabil230\LaravelQueryConditions\Exceptions;
+namespace MichaelNabil230\QueryConditions\Exceptions;
 
 use InvalidArgumentException;
 
-class InvalidSubject extends InvalidArgumentException
+final class InvalidSubject extends InvalidArgumentException
 {
     public static function make($subject)
     {
