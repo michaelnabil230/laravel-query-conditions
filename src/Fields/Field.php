@@ -71,7 +71,7 @@ abstract class Field implements JsonSerializable
      */
     public static function make($label, $rule = null)
     {
-        return new static($label, $rule);
+        return new self($label, $rule);
     }
 
     /**

@@ -47,7 +47,7 @@ class QueryConditions implements ArrayAccess
             $subject = $subject::query();
         }
 
-        return new static($subject, $conditions);
+        return new self($subject, $conditions);
     }
 
     protected function initializeSubject(Builder $subject): static

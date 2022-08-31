@@ -8,6 +8,6 @@ final class InvalidArgumentRequest extends InvalidArgumentException
 {
     public static function make(string $argument)
     {
-        return new static('Invalid argument request for argument: '.$argument);
+        return new self('Invalid argument request for argument: '.$argument);
     }
 }
