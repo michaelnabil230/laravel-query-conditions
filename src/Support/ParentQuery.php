@@ -10,7 +10,6 @@ class ParentQuery
     public array $children = [];
 
     /**
-     * @param  string  $method
      * @param  Children[]  $children
      * @return void
      */

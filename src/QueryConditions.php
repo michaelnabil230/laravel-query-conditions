@@ -39,7 +39,6 @@ class QueryConditions implements ArrayAccess
     /**
      * @param  Builder|string  $subject
      * @param  array  $conditions
-     * @return static
      */
     public static function for($subject, $conditions): static
     {

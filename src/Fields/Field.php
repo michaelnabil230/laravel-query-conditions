@@ -101,7 +101,6 @@ abstract class Field implements JsonSerializable
     /**
      * Define the callback that should be used to display the field's value.
      *
-     * @param  callable  $displayCallback
      * @return $this
      */
     public function displayUsing(callable $displayCallback)
